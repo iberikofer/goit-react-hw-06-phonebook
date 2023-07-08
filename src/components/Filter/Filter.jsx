@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/contacts/filterSlice';
+import { setFilter } from 'redux/slices/contactsSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

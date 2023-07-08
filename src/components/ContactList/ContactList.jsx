@@ -1,17 +1,31 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getContacts, getFilter } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/contactsSlice';
+// import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/slices/contactsSlice';
+// import { setState } from 'redux/slices/contactsSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   const storedContacts = localStorage.getItem('contacts');
+  //   console.log(123);
+  //   if (storedContacts) {
+  //     dispatch(setState(JSON.parse(storedContacts)));
+  //   } else {
+  //     localStorage.setItem('contacts', JSON.stringify(contacts));
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
+  const onDelete = contactId => {
+    dispatch(deleteContact(contactId));
+  };
 
   const buildMarkup = () => {
     const filteredContacts =
@@ -20,10 +34,6 @@ export const ContactList = () => {
           ? contacts.filter(contact => contact.name.includes(filter))
           : contacts
         : [];
-
-    const onDelete = contactId => {
-      dispatch(deleteContact(contactId));
-    };
 
     return filteredContacts.length > 0 ? (
       filteredContacts.map(contact => (
