@@ -1,16 +1,45 @@
+import ContactForm from './ContactForm/ContactForm';
+import Filter from './Filter/Filter';
+import ContactList from './ContactList/ContactList';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts } from 'redux/contacts/selectors';
+import { setState } from 'redux/contacts/actions';
+
 export const App = () => {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      dispatch(setState(JSON.parse(storedContacts)));
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div
       style={{
-        height: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
+        fontSize: 28,
+        color: '#010101',
+        backgroundColor: 'orange',
+        gap: 50,
       }}
     >
-      React homework template
+      <h1>Life cycle Phonebook</h1>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <Filter />
+      <ContactList />
     </div>
   );
 };
+
+export default App;
