@@ -4,7 +4,7 @@ import ContactList from './ContactList/ContactList';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/selectors';
-import { setState } from 'redux/contacts/actions';
+import { setState } from 'redux/contacts/contactsSlice';
 
 export const App = () => {
   const contacts = useSelector(getContacts);
