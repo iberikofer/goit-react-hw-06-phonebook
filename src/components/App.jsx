@@ -29,7 +29,7 @@ export const App = () => {
         alignItems: 'center',
         fontSize: 28,
         color: '#010101',
-        backgroundColor: 'orange',
+        backgroundColor: 'yellowgreen',
         gap: 50,
       }}
     >
