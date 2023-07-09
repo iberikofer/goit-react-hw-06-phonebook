@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  contacts: [],
+  contacts: { contacts: [] },
   filter: '',
 };
 
@@ -9,9 +9,6 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    // setState(state, action) {
-    //   return { ...state, contacts: action.payload };
-    // },
     addContact(state, action) {
       state.contacts.push(action.payload);
     },
@@ -29,3 +26,5 @@ const contactsSlice = createSlice({
 export const { setState, addContact, deleteContact, setFilter } =
   contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
+
+// TODO - separate contacts and filter slices

@@ -1,28 +1,12 @@
-// import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/slices/contactsSlice';
-// import { setState } from 'redux/slices/contactsSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const storedContacts = localStorage.getItem('contacts');
-  //   console.log(123);
-  //   if (storedContacts) {
-  //     dispatch(setState(JSON.parse(storedContacts)));
-  //   } else {
-  //     localStorage.setItem('contacts', JSON.stringify(contacts));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
   const onDelete = contactId => {
     dispatch(deleteContact(contactId));
   };
