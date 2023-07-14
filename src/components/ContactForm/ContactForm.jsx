@@ -15,7 +15,7 @@ export const ContactForm = () => {
       id: nanoid(),
     };
 
-    const checkPhonebookName = contacts.find(
+    const checkPhonebookName = contacts?.find(
       contact => contact.name === contactObj.name
     );
     if (!checkPhonebookName) {
