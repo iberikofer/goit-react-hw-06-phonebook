@@ -6,7 +6,6 @@ import { addContact } from 'redux/slices/contactsSlice';
 export const ContactForm = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-
   const handleSubbmit = e => {
     e.preventDefault();
     const contactObj = {
@@ -15,9 +14,9 @@ export const ContactForm = () => {
       id: nanoid(),
     };
 
-    const checkPhonebookName = contacts?.find(
-      contact => contact.name === contactObj.name
-    );
+    const checkPhonebookName =
+      Array.isArray(contacts) &&
+      contacts?.find(contact => contact.name === contactObj.name);
     if (!checkPhonebookName) {
       dispatch(addContact(contactObj));
       e.target.reset();
